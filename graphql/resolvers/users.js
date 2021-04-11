@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server');
-const { SECRET_KEY } = require('../../config');
 
 const User = require('../../models/User');
 const {
@@ -16,7 +15,7 @@ const genToken = user => {
       email: user.email,
       username: user.username,
     },
-    SECRET_KEY,
+    process.env.SECRET_KEY,
     { expiresIn: '1h' }
   );
 };
